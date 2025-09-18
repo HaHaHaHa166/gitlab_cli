@@ -4,13 +4,16 @@ It allows you to perform CRUD operations on GitLab projects using a local databa
 
 ## Project Structure
 gitlab_cli/
-│
-├── main.py # Entry point for CLI commands
-├── services.py # Functions to interact with GitLab API & database
-├── database.py # Database models and session management
-├── config.py # GitLab API configuration (URL and token)
-├── requirements.txt # Python dependencies
-└── gitlab.db # SQLite database file (auto-generated)
+├── README.md                # Documentation on usage, setup, demo
+├── requirements.txt         # Dependencies (requests, SQLAlchemy, etc.)
+├── .gitignore               # Ignore venv, db, pycache
+├── gitlab.db                # SQLite database (auto-created, should be .gitignored)
+├── main.py                  # CLI entry point (argparse + commands)
+├── services.py              # Business logic: fetch, add, update, delete, list
+├── db.py                    # Database models & session management
+├── config.py                # Config (API URL, Private token, DB URL)
+├── openapi_test.py          # (optional) playground for OpenAPI client testing
+├── gitlab_openapi_client/   # (optional) generated client package, if used
 
 ## Requirements
 - Python 3.9+  

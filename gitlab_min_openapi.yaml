@@ -1,0 +1,54 @@
+openapi: 3.0.1
+info:
+  title: Minimal GitLab API
+  version: 1.0.0
+servers:
+  - url: https://gitlab.boon.com.au/api/v4
+paths:
+  /projects:
+    get:
+      summary: List projects (minimal)
+      parameters:
+        - name: per_page
+          in: query
+          schema:
+            type: integer
+            default: 20
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+      responses:
+        '200':
+          description: A list of projects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Project'
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Private-Token
+  schemas:
+    Project:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 123
+        name:
+          type: string
+          example: example-project
+        description:
+          type: string
+          example: "A demo project"
+      required:
+        - id
+        - name
+security:
+  - ApiKeyAuth: []
